@@ -6,7 +6,11 @@ from wtforms import TextField
 from wtforms.validators import DataRequired
 
 app = Flask(__name__)
+
 title = "AceCodes Presents: The Code Engine"
+desc = 'A web app for encoding and decoding messages using various code systems'
+author = 'Ace Eddleman'
+
 app.config.from_object('config')
 
 class MyForm(Form):
@@ -70,12 +74,12 @@ End Morse Code
 @app.route('/')
 def front_page():
 	form = MyForm()
-	return render_template('index.html', title=title, form=form)
+	return render_template('index.html', title=title, desc=desc, author=author, form=form)
 
 @app.route('/encoded_message', methods=['POST'])
 def encoded_message():
 	encoder_form = request.form['encoderform']
-	return render_template('encoded_message.html', title=title, encoder_form=encoder_form, encode=MCode.encode)
+	return render_template('encoded_message.html', title=title, desc=desc, author=author, encoder_form=encoder_form, encode=MCode.encode)
 
 
 if __name__ == '__main__':
