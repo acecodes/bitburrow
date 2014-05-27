@@ -37,30 +37,29 @@
   <body>
 
     <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="//www.github.com/acecodes/codesite">GitHub</a></li>
-          <li><a href="//www.acecodes.net">Author Blog</a></li>
-        </ul>
-        <h3 class="text-muted">The Code Engine</h3>
-      </div>
 
       <div class="jumbotron">
-        <h2>Enter your message:</h2>
-        <br />
 
-        <form method="POST" action="{{ url_for('encoded_message') }}">
-        {{ form.encoderform(size=50) }}
-        <br /><br />
-         <input type="submit" value="Encode" a class="btn btn-lg btn-success" role="button"></a>
-        </form>
-      </div>
-    
+      <h3>Original message:</h3>
 
-      <div class="footer">
-        <p>&copy; <a href="//www.acecodes.net">Ace Eddleman</a> 2014</p>
+      <h3 class="results">
+
+      {{ encoder_form }}
+
+      </h3>
+
+        <h3>Morse Code:</h3>
+
+
+        <h3 class="results">
+        
+        {{ encode(encoder_form) }}
+
+        </h3>
+        
+      
       </div>
+
 
     </div> <!-- /container -->
 

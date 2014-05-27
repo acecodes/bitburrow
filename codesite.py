@@ -1,6 +1,5 @@
 import os
-from flask import Flask
-from flask import render_template
+from flask import Flask, request, flash, url_for, render_template
 from jinja2 import Template
 from flask_wtf import Form
 from wtforms import TextField
@@ -11,7 +10,7 @@ title = "AceCodes Presents: The Code Engine"
 app.config.from_object('config')
 
 class MyForm(Form):
-    encode_message = TextField('', validators=[DataRequired()])
+    encoderform = TextField('encoderform', validators=[DataRequired()])
 
 """"
 Begin Morse Code
@@ -68,10 +67,16 @@ MCode = Morse('Morse Code')
 End Morse Code
 """
 
-@app.route('/', methods=(['GET', 'POST']))
+@app.route('/')
 def front_page():
 	form = MyForm()
-	return render_template('index.html', title=title, form=form, encode=MCode.encode)
+	return render_template('index.html', title=title, form=form)
+
+@app.route('/encoded_message', methods=['POST'])
+def encoded_message():
+	encoder_form = request.form['encoderform']
+	return render_template('encoded_message.html', title=title, encoder_form=encoder_form, encode=MCode.encode)
+
 
 if __name__ == '__main__':
 	app.run(debug=True)
