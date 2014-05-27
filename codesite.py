@@ -11,7 +11,7 @@ title = "AceCodes Presents: The Code Engine"
 app.config.from_object('config')
 
 class MyForm(Form):
-    name = TextField('', validators=[DataRequired()])
+    encode_message = TextField('', validators=[DataRequired()])
 
 """"
 Begin Morse Code
@@ -68,8 +68,7 @@ MCode = Morse('Morse Code')
 End Morse Code
 """
 
-
-@app.route('/', methods=('GET', 'POST'))
+@app.route('/', methods=(['GET', 'POST']))
 def front_page():
 	form = MyForm()
 	return render_template('index.html', title=title, form=form, encode=MCode.encode)

@@ -49,9 +49,9 @@
       <div class="jumbotron">
         <h2>Enter your message:</h2>
         <br />
-        <form id="encode-form" method="POST" action="/">
+        <form id="encode-form" method="GET" action="/">
         {{ form.csrf_token }}
-        {{ form.name.label }} {{ form.name(size=50) }}
+        {{ form.encode_message.label }} {{ form.encode_message(size=50) }}
         <br /><br />
          <input type="submit" value="Encode" a class="btn btn-lg btn-success" role="button"></a>
         </form>
@@ -68,7 +68,8 @@
         $( document ).ready(function()  {
         $( "#encode-form" ).submit(function( event ) {
   var value = $("#encode-form :text").val()
-  $( "h3.results" ).text( value );
+  $( "h3.results" ).text( {{ encode('boom')|tojson|safe }} );
+
   event.preventDefault();
 });
 })
