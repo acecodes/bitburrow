@@ -25,7 +25,14 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
   </head>
+
+
 
   <body>
 
@@ -41,22 +48,36 @@
 
       <div class="jumbotron">
         <h2>Enter your message:</h2>
-
-        <form method="POST" action="/">
+        <br />
+        <form id="encode-form" method="POST" action="/">
         {{ form.csrf_token }}
         {{ form.name.label }} {{ form.name(size=50) }}
-         <input type="submit" value="Go">
+        <br /><br />
+         <input type="submit" value="Encode" a class="btn btn-lg btn-success" role="button"></a>
         </form>
-        <br />
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Encode</a></p>
       
       </div>
 
       <div class="jumbotron">
-        <h2>Result:</h2>
+        <h2>In Morse Code:</h2>
 
 
-        <h3>{{ encode('Booya') }}</h3>
+        <h3 class="results">
+        <script>
+
+        $( document ).ready(function()  {
+        $( "#encode-form" ).submit(function( event ) {
+  var value = $("#encode-form :text").val()
+  $( "h3.results" ).text( value );
+  event.preventDefault();
+});
+})
+
+$( "#results" ).click(function() {
+  $( "#encode-form" ).submit();
+});
+</script>
+</h3>
         
         <br />
       
@@ -72,6 +93,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
   </body>
 </html>
