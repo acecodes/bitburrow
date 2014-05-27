@@ -1,2 +1,0 @@
-CSRF_ENABLED = True
-SECRET_KEY = 'lXxj7Pd1b!gk*cc6x393'
