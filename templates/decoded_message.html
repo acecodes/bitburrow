@@ -45,34 +45,44 @@
         </ul>
         <h3 class="text-muted">The Code Engine</h3>
       </div>
-        
-      <div class="jumbotron" id="original">
-        <h3>Translate English into Morse code</h3>  
-        <br />
-        <div id="encoderform">
-        <form method="POST" action="{{ url_for('encoded_message') }}">
-        {{ form.encoderform(size=70) }}
-        <br /><br />
-         <input type="submit" value="Encode" a class="btn btn-lg btn-primary" role="button"></a>
-        </form>
-        </div>
-        </div>
 
-<div class="jumbotron" id="encoded">
-        <h3>Translate Morse code into English</h3> 
-        <br />  
-        <div id="decoderform">
-        <form method="POST" action="{{ url_for('encoded_message') }}">
-        {{ form.encoderform(size=70) }}
-        <br /><br />
-         <input type="submit" value="Decode" a class="btn btn-lg btn-danger" role="button"></a>
-        </form>
-        </div>
+      <h3>Original message:</h3>
+
+      <div id="original" class="jumbotron">
+
+
+
+      <h3 class="results">
+
+      {{ encoder_form }}
+
+      </h3>
 
       </div>
-  
 
-      <div class="footer">
+
+      <h3>Morse Code:</h3>
+      <p><em>Note: Punctuation marks and capitalization are ignored</em>
+
+      <div id="encoded" class="jumbotron">
+
+
+
+
+        <h3 class="results">
+        
+        {{ encode(encoder_form) }}
+
+        </h3>
+
+
+      
+      </div>
+
+    <a class="btn btn-lg btn-success" href="{{ url_for('front_page') }}"role="button">Encode another message</a>
+    <br /><br />
+
+   <div class="footer">
         <p>&copy; <a href="//www.acecodes.net">Ace Eddleman</a> 2014</p>
       </div>
 
@@ -97,3 +107,4 @@
 
   </body>
 </html>
+

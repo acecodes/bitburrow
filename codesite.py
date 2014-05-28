@@ -20,13 +20,11 @@ class MyForm(Form):
 Begin Morse Code
 """
 
-"""
-THIS CODE IS A WORK IN PROGRESS AND NOT RUNNING YET!
-"""
 class CodeType:
 
 	ABCs = list('abcdefghijklmnopqrstuvwxyz')
-	punctuation = ['!', '?', '\'', ';', ','] # A list of punctuation marks
+	Numbers = list('012345679')
+	Punctuation = '.,?\'!/)(&:;=+-_"$@' # A list of punctuation marks
 	numbers = []
 	alphabet = []
 
@@ -43,10 +41,20 @@ class Morse(CodeType):
 
 	alphabet = ['.-', '-...', '-.-.', '-..', '.', '..-.','--.','....',
 	'..','.---','-.-','.-..','--','-.','---','.--.','--.-','.-.',
-	'...','-','..-','..-','.--','-.--','--..']
+	'...','-','..-','...-','.--','-.--','--..']
 
-	alpha = dict(zip(CodeType.ABCs, alphabet))
-	nums = dict(enumerate(numbers))
+	punctuation = ['.-.-.-', '--..--', '..--..', '.----.', '-.-.--', '-..-.', '-..-.', '-.--.', 
+					'-.--.-', '.-...', '---...', '-.-.-.', '-...-', '.-.-.', '-....-', '..--.-', '.-..-.', 
+					'...-..-', '.--.-.']
+
+
+	encode_alpha = dict(zip(CodeType.ABCs, alphabet))
+	encode_nums = dict(enumerate(numbers))
+	encode_punct = dict(zip(CodeType.Punctuation, punctuation))
+
+	decode_alpha = dict(zip(alphabet, CodeType.ABCs))
+	decode_nums = dict(zip(numbers, CodeType.Numbers))
+	decode_punct = dict(zip(punctuation, CodeType.Punctuation))
 
 	def encode(self, string):
 		string = string.lower()
@@ -54,16 +62,37 @@ class Morse(CodeType):
 		result = []
 
 		for chars in string:
-			if chars in self.alpha:
-				result.append(self.alpha[chars])
-			elif chars in self.nums:
-				result.append(self.nums[chars])
+			if chars in self.encode_alpha:
+				result.append(self.encode_alpha[chars])
+			elif chars in self.encode_nums:
+				result.append(self.encode_nums[chars])
+			elif chars in self.encode_punct:
+				result.append(self.encode_punct[chars])
 			elif chars == ' ':
 				result.append(' ')
 			else:
 				continue
 
 		return ' '.join(result)
+
+	def decode(self, string):
+		string = string.split(' ')
+
+		result = []
+
+		for chars in string:
+			if chars in self.decode_alpha:
+				result.append(self.decode_alpha[chars])
+			elif chars in self.decode_nums:
+				result.append(self.decode_nums[chars])
+			elif chars in self.decode_punct:
+				result.append(self.decode_punct[chars])
+			elif chars == '  ':
+				result.append(' ')
+			else:
+				continue
+
+		return ''.join(result)
 
 MCode = Morse('Morse Code')
 
