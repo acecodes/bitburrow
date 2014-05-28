@@ -4,6 +4,7 @@ from jinja2 import Template
 from flask_wtf import Form
 from wtforms import TextField
 from wtforms.validators import DataRequired
+import re
 
 app = Flask(__name__)
 
@@ -15,6 +16,7 @@ app.config.from_object('config')
 
 class MyForm(Form):
     encoderform = TextField('encoderform', validators=[DataRequired()])
+    decoderform = TextField('decoderform', validators=[DataRequired()])
 
 """"
 Begin Morse Code
@@ -69,15 +71,15 @@ class Morse(CodeType):
 			elif chars in self.encode_punct:
 				result.append(self.encode_punct[chars])
 			elif chars == ' ':
-				result.append(' ')
+				result.append('')
 			else:
 				continue
 
 		return ' '.join(result)
 
 	def decode(self, string):
-		string = string.split(' ')
 
+		string = re.split(r'(\s)', string)
 		result = []
 
 		for chars in string:
@@ -87,7 +89,7 @@ class Morse(CodeType):
 				result.append(self.decode_nums[chars])
 			elif chars in self.decode_punct:
 				result.append(self.decode_punct[chars])
-			elif chars == '  ':
+			elif chars == '':
 				result.append(' ')
 			else:
 				continue
@@ -109,6 +111,11 @@ def front_page():
 def encoded_message():
 	encoder_form = request.form['encoderform']
 	return render_template('encoded_message.html', title=title, desc=desc, author=author, encoder_form=encoder_form, encode=MCode.encode)
+
+@app.route('/decoded_message', methods=['POST'])
+def decoded_message():
+	decoder_form = request.form['decoderform']
+	return render_template('decoded_message.html', title=title, desc=desc, author=author, decoder_form=decoder_form, decode=MCode.decode)
 
 
 if __name__ == '__main__':

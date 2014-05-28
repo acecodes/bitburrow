@@ -62,8 +62,8 @@
         <h3>Translate Morse code into English</h3> 
         <br />  
         <div id="decoderform">
-        <form method="POST" action="{{ url_for('encoded_message') }}">
-        {{ form.encoderform(size=70) }}
+        <form method="POST" action="{{ url_for('decoded_message') }}">
+        {{ form.decoderform(size=70) }}
         <br /><br />
          <input type="submit" value="Decode" a class="btn btn-lg btn-danger" role="button"></a>
         </form>
