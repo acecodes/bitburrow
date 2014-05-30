@@ -1,9 +1,9 @@
 import os
-from flask import Flask, request, flash, url_for, render_template
+from flask import Flask, request, flash, url_for, render_template, redirect
 from jinja2 import Template
 from flask_wtf import Form
 from wtforms import TextField
-from wtforms.validators import DataRequired
+from wtforms.validators import Required
 import re
 
 app = Flask(__name__)
@@ -14,9 +14,11 @@ author = 'Ace Eddleman'
 
 app.config.from_object('config')
 
-class MyForm(Form):
-    encoderform = TextField('encoderform', validators=[DataRequired()])
-    decoderform = TextField('decoderform', validators=[DataRequired()])
+class EncoderForm(Form):
+    encoder_message = TextField('encoder_message', validators=[Required()])
+    
+class DecoderForm(Form):
+    decoder_message = TextField('decoder_message', validators=[Required()])
 
 """"
 Begin Morse Code
@@ -104,17 +106,18 @@ End Morse Code
 
 @app.route('/')
 def front_page():
-	form = MyForm()
-	return render_template('index.html', title=title, desc=desc, author=author, form=form)
+	encoderform = EncoderForm()
+	decoderform = DecoderForm()
+	return render_template('index.html', title=title, desc=desc, author=author, encoderform=encoderform, decoderform=decoderform)
 
-@app.route('/encoded_message', methods=['POST'])
+@app.route('/encoded_message', methods=['GET','POST'])
 def encoded_message():
-	encoder_form = request.form['encoderform']
+	encoder_form = request.form['encoder_message']
 	return render_template('encoded_message.html', title=title, desc=desc, author=author, encoder_form=encoder_form, encode=MCode.encode)
 
-@app.route('/decoded_message', methods=['POST'])
+@app.route('/decoded_message', methods=['GET','POST'])
 def decoded_message():
-	decoder_form = request.form['decoderform']
+	decoder_form = request.form['decoder_message']
 	return render_template('decoded_message.html', title=title, desc=desc, author=author, decoder_form=decoder_form, decode=MCode.decode)
 
 

@@ -51,7 +51,8 @@
         <br />
         <div id="encoderform">
         <form method="POST" action="{{ url_for('encoded_message') }}">
-        {{ form.encoderform(size=70) }}
+        {{ encoderform.hidden_tag() }}
+        {{ encoderform.encoder_message(size=70) }}
         <br /><br />
          <input type="submit" value="Encode" a class="btn btn-lg btn-primary" role="button"></a>
         </form>
@@ -63,7 +64,8 @@
         <br />  
         <div id="decoderform">
         <form method="POST" action="{{ url_for('decoded_message') }}">
-        {{ form.decoderform(size=70) }}
+        {{ decoderform.hidden_tag() }}
+        {{ decoderform.decoder_message(size=70) }}
         <br /><br />
          <input type="submit" value="Decode" a class="btn btn-lg btn-danger" role="button"></a>
         </form>
