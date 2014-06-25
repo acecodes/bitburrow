@@ -8,7 +8,7 @@ import re
 
 app = Flask(__name__)
 
-title = "AceCodes Presents: The Code Engine"
+title = "BitBurrow"
 desc = 'A web app for encoding and decoding messages using various code systems'
 author = 'Ace Eddleman'
 
