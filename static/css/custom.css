@@ -1,0 +1,21 @@
+/* Custom CSS */
+
+.jumbotron#original {max-width:100%;}
+.container .jumbotron {border-radius:0;}
+.jumbotron#original { background:#53B2F1; font-family: 'Lobster', cursive;; color:#FFFFFF;}
+.jumbotron#encoded { background:#A30202; font-family: 'Lobster', cursive;; color:#FFFFFF;}
+.jumbotron#error { background:#000000; font-family: 'Lobster', cursive;; color:white;}
+.logo {font-family: 'Lobster', cursive; color:#000000; font-size:3em;}
+.btn {font-family: 'Lobster', cursive;}
+h3 {font-size:2.5em;}
+
+input {color:#000000; font-family:serif;}
+
+ul {font-family:sans-serif; color:#000000;}
+
+a:hover {color:#000203}
+a {color:#000000;}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {background:#000000;}
+
+.footer {font-family:sans-serif;}

@@ -32,9 +32,9 @@ body {
 }
 
 /* Customize container */
-@media (min-width: 768px) {
+@media (min-width: 100%) {
   .container {
-    max-width: 730px;
+    max-width: 100%;
   }
 }
 .container-narrow > hr {
@@ -47,8 +47,6 @@ body {
   border-bottom: 1px solid #e5e5e5;
 }
 
-.jumbotron#original { background:#AEDFFF; }
-.jumbotron#encoded { background:#FDCCCC; }
 
 .jumbotron .btn {
   padding: 14px 24px;
