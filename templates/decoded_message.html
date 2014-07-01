@@ -50,7 +50,7 @@
 
       {% if decode(decoder_form) != False %}
 
-      <h3>Morse Code:</h3>
+      <h3 class="results-header">Morse code</h3>
 
       <div id="encoded" class="jumbotron">
 
@@ -63,10 +63,9 @@
       </div>
 
 
-      <h3>Original message:</h3>
+      <h3 class="results-header">Original message</h3>
 
       <div id="original" class="jumbotron">
-
 
 
       <h3 class="results">
@@ -81,7 +80,7 @@
     <a class="btn btn-lg btn-success" href="//en.wikipedia.org/wiki/Morse_code#Letters.2C_numbers.2C_punctuation.2C_prosigns_and_non-English_variants" role="button" target="_blank">Morse code reference</a>
     <br /><br />
 
-    {% elif decode(decoder_form) == False %}
+    {% else %}
           <div id="error" class="jumbotron">
 
         <h3 class="results">

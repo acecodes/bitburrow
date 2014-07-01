@@ -43,6 +43,7 @@ class CodeType:
 	ABCs = list('abcdefghijklmnopqrstuvwxyz')
 	Numbers = list('012345679')
 	Punctuation = '.,?\'!/)(&:;=+-_"$@ ' # A list of punctuation marks
+	acceptable_encoding_inputs = ABCs + Numbers + list(Punctuation)
 	numbers = []
 	alphabet = []
 
@@ -65,6 +66,7 @@ class Morse(CodeType):
 					'-.--.-', '.-...', '---...', '-.-.-.', '-...-', '.-.-.', '-....-', '..--.-', '.-..-.', 
 					'...-..-', '.--.-.', ' ']
 
+	acceptable_decoding_inputs = numbers + alphabet + punctuation
 
 	encode_alpha = dict(zip(CodeType.ABCs, alphabet))
 	encode_nums = dict(enumerate(numbers))
@@ -75,13 +77,14 @@ class Morse(CodeType):
 	decode_punct = dict(zip(punctuation, CodeType.Punctuation))
 
 	def encode(self, string):
+
 		if string == '':
 			return False
 
 		string = string.lower()
 
 		for chars in string:
-			if chars not in (self.encode_alpha, self.encode_nums, self.encode_punct):
+			if chars not in CodeType.acceptable_encoding_inputs:
 				return False
 
 		result = []
@@ -99,11 +102,12 @@ class Morse(CodeType):
 		return ' '.join(result)
 
 	def decode(self, string):
+
 		if string == '':
 			return False
 
 		for chars in string:
-			if chars not in (self.decode_alpha, self.decode_nums, self.decode_punct):
+			if chars not in self.acceptable_decoding_inputs:
 				return False
 
 		string = re.split(r'(\s)', string)
