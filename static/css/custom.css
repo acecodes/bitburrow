@@ -1,6 +1,5 @@
 /* Custom CSS */
 
-.jumbotron#original {max-width:100%;}
 .container .jumbotron {border-radius:0;}
 .jumbotron#original { background:#53B2F1; font-family: 'Lobster', cursive;; color:#FFFFFF;}
 .jumbotron#encoded { background:#A30202; font-family: 'Lobster', cursive;; color:#FFFFFF;}
