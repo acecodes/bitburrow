@@ -23,14 +23,14 @@ year = time.strftime("%Y")
 app.config.from_object('config')
 
 class EncoderForm(Form):
-    encoder_message = TextField('encoder_message', validators=[Required()])
+    encoder_message = TextField('encoder_message', [Required()])
     
 class DecoderForm(Form):
-    decoder_message = TextField('decoder_message', validators=[Required()])
+    decoder_message = TextField('decoder_message', [Required()])
 
 class SendtoFriend(Form):
-	friend = TextField('friend', validators=[Email()])
-	you = TextField('you', validators=[Required()])
+	friend = TextField('friend', [Email('Enter a valid e-mail address')])
+	you = TextField('you', validators=[Required('Please enter a name')])
 
 """"
 Begin Morse Code
@@ -135,33 +135,32 @@ End Morse Code
 def front_page():
 	encoderform = EncoderForm()
 	decoderform = DecoderForm()
+	print(encoderform.errors)
+	print(decoderform.errors)
 	return render_template('index.html', title=title, desc=desc, author=author, encoderform=encoderform, decoderform=decoderform, year=year)
 
-@app.route('/encoded_message', methods=['GET','POST'])
+@app.route('/encoded_message', methods=['POST'])
 def encoded_message():
 	page_title = 'Your encoded message'
 	send = SendtoFriend()
 	encoder_form = request.form['encoder_message']
+	print(send.errors)
 	if send.validate_on_submit():
 		return redirect(url_for('sent_message'))
 	return render_template('encoded_message.html', title=title, desc=desc, page_title=page_title, author=author, encoder_form=encoder_form, encode=MCode.encode, year=year, send=send)
 
-@app.route('/decoded_message', methods=['GET','POST'])
+@app.route('/decoded_message', methods=['POST'])
 def decoded_message():
 	page_title = 'Your decoded message'
 	decoder_form = request.form['decoder_message']
 	return render_template('decoded_message.html', title=title, desc=desc, page_title=page_title, author=author, decoder_form=decoder_form, decode=MCode.decode, year=year)
 
-@app.route('/sent', methods=['GET','POST'])
+@app.route('/sent', methods=['POST'])
 def sent_message():
 	page_title = 'Your sent message'
 	friend = request.form['friend']
 	you = request.form['you']
-	if you == '':
-		msg = Message('Your Friend Sent You A Coded Message!', sender='donotreply@bitburrow.com', recipient=friend)
-
-	else:
-		msg = Message('Your Friend {you} Sent You A Coded Message!'.format(you=you), sender='donotreply@bitburrow.com', recipients=friend)
+	msg = Message('Your Friend {you} Sent You A Coded Message!'.format(you=you), sender='donotreply@bitburrow.com', recipients=friend)
 
 	return render_template('sent.html', title=title, desc=desc, page_title=page_title, author=author, year=year, friend=friend)
 
