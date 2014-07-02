@@ -2,9 +2,9 @@ import os
 from flask import Flask, request, flash, url_for, render_template, redirect
 from jinja2 import Template
 from flask_wtf import Form
-from flask_mail import Mail
+from flask_mail import Mail, Message
 from wtforms import TextField
-from wtforms.validators import Required, Length
+from wtforms.validators import Required, Email
 import re
 import time
 
@@ -29,7 +29,7 @@ class DecoderForm(Form):
     decoder_message = TextField('decoder_message', validators=[Required()])
 
 class SendtoFriend(Form):
-	friend = TextField('friend', validators=[Length(min=6, max=35)])
+	friend = TextField('friend', validators=[Email()])
 	you = TextField('you', validators=[Required()])
 
 """"
@@ -142,6 +142,8 @@ def encoded_message():
 	page_title = 'Your encoded message'
 	send = SendtoFriend()
 	encoder_form = request.form['encoder_message']
+	if send.validate_on_submit():
+		return redirect(url_for('sent_message'))
 	return render_template('encoded_message.html', title=title, desc=desc, page_title=page_title, author=author, encoder_form=encoder_form, encode=MCode.encode, year=year, send=send)
 
 @app.route('/decoded_message', methods=['GET','POST'])
@@ -153,11 +155,15 @@ def decoded_message():
 @app.route('/sent', methods=['GET','POST'])
 def sent_message():
 	page_title = 'Your sent message'
-	encoder_form = request.form['encoder_message']
 	friend = request.form['friend']
 	you = request.form['you']
-	return render_template('encoded_message.html', title=title, desc=desc, page_title=page_title, author=author, encoder_form=encoder_form, encode=MCode.encode, year=year, send=send)
+	if you == '':
+		msg = Message('Your Friend Sent You A Coded Message!', sender='donotreply@bitburrow.com', recipient=friend)
 
+	else:
+		msg = Message('Your Friend {you} Sent You A Coded Message!'.format(you=you), sender='donotreply@bitburrow.com', recipients=friend)
+
+	return render_template('sent.html', title=title, desc=desc, page_title=page_title, author=author, year=year, friend=friend)
 
 if __name__ == '__main__':
 	app.run(debug=True)

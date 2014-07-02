@@ -82,7 +82,7 @@
       <div id="send" class="jumbotron">
 
 
-        <form method="POST" action="{{ url_for('encoded_message') }}">
+        <form method="POST" action="{{ url_for('sent_message') }}">
         {{ send.hidden_tag() }}
         <h4>Your name</h4>
         {{ send.you(size=40) }}

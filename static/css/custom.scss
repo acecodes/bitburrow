@@ -7,18 +7,18 @@ $bl: #000000;
 
 .container .jumbotron {border-radius:0; color:$wh;}
 .jumbotron {font-family:$droid;}
-input.jumbotron {maxwidth:90%;}
+.jumbotron input {color:$bl;}
+.jumbotron input.btn {color:$wh;}
 .jumbotron#original { background:#53B2F1;}
 .jumbotron#encoded { background:#A30202;}
 .jumbotron#error { background:$bl;}
 .jumbotron#send {background:#66AC5C;}
+.jumbotron#blank {background:none; color:$bl; font-size:2em;}
 .results-header {font-family: $lobster; color:$bl; text-align:center;}
 
 h3.logo {font-family:$lobster; color:$bl; font-size:3em;}
 .btn {font-family: $droid;}
 h3 {font-size:2.0em;}
-input#encoder_message {color:$bl; font-family: $droid;}
-input#decoder_message {color:$bl; font-family: $droid;}
 
 ul {font-family: $droid;; color:$bl;}
 

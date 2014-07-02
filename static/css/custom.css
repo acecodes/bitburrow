@@ -6,8 +6,11 @@
 .jumbotron {
   font-family: "Droid Serif", serif; }
 
-input.jumbotron {
-  maxwidth: 90%; }
+.jumbotron input {
+  color: black; }
+
+.jumbotron input.btn {
+  color: white; }
 
 .jumbotron#original {
   background: #53B2F1; }
@@ -20,6 +23,11 @@ input.jumbotron {
 
 .jumbotron#send {
   background: #66AC5C; }
+
+.jumbotron#blank {
+  background: none;
+  color: black;
+  font-size: 2em; }
 
 .results-header {
   font-family: "Lobster", cursive;
@@ -36,14 +44,6 @@ h3.logo {
 
 h3 {
   font-size: 2.0em; }
-
-input#encoder_message {
-  color: black;
-  font-family: "Droid Serif", serif; }
-
-input#decoder_message {
-  color: black;
-  font-family: "Droid Serif", serif; }
 
 ul {
   font-family: "Droid Serif", serif;
