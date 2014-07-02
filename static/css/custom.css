@@ -1,21 +1,25 @@
 /* Custom CSS, generated in part by SASS */
 .container .jumbotron {
-  border-radius: 0; }
+  border-radius: 0;
+  color: white; }
+
+.jumbotron {
+  font-family: "Droid Serif", serif; }
+
+input.jumbotron {
+  maxwidth: 90%; }
 
 .jumbotron#original {
-  background: #53B2F1;
-  font-family: "Droid Serif", serif;
-  color: white; }
+  background: #53B2F1; }
 
 .jumbotron#encoded {
-  background: #A30202;
-  font-family: "Droid Serif", serif;
-  color: white; }
+  background: #A30202; }
 
 .jumbotron#error {
-  background: black;
-  font-family: "Droid Serif", serif;
-  color: white; }
+  background: black; }
+
+.jumbotron#send {
+  background: #66AC5C; }
 
 .results-header {
   font-family: "Lobster", cursive;
@@ -35,13 +39,11 @@ h3 {
 
 input#encoder_message {
   color: black;
-  font-family: "Droid Serif", serif;
-  max-width: 90%; }
+  font-family: "Droid Serif", serif; }
 
 input#decoder_message {
   color: black;
-  font-family: "Droid Serif", serif;
-  max-width: 90%; }
+  font-family: "Droid Serif", serif; }
 
 ul {
   font-family: "Droid Serif", serif;
@@ -52,6 +54,11 @@ a:hover {
 
 a {
   color: black; }
+
+p.small {
+  font-size: 0.8em;
+  color: white;
+  font-style: italic; }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
   background: black; }

@@ -2,12 +2,17 @@ import os
 from flask import Flask, request, flash, url_for, render_template, redirect
 from jinja2 import Template
 from flask_wtf import Form
+from flask_mail import Mail
 from wtforms import TextField
-from wtforms.validators import Required
+from wtforms.validators import Required, Length
 import re
 import time
 
+
+
+
 app = Flask(__name__)
+mail = Mail(app)
 
 title = "BitBurrow"
 desc = 'A web app for encoding and decoding messages using various code systems'
@@ -23,20 +28,13 @@ class EncoderForm(Form):
 class DecoderForm(Form):
     decoder_message = TextField('decoder_message', validators=[Required()])
 
+class SendtoFriend(Form):
+	friend = TextField('friend', validators=[Length(min=6, max=35)])
+	you = TextField('you', validators=[Required()])
+
 """"
 Begin Morse Code
 """
-
-class CodeType:
-
-	ABCs = list('abcdefghijklmnopqrstuvwxyz')
-	Numbers = list('012345679')
-	Punctuation = '.,?\'!/)(&:;=+-_"$@' # A list of punctuation marks
-	numbers = []
-	alphabet = []
-
-	def __init__(self, name):
-		self.name = name
 
 class CodeType:
 
@@ -142,14 +140,23 @@ def front_page():
 @app.route('/encoded_message', methods=['GET','POST'])
 def encoded_message():
 	page_title = 'Your encoded message'
+	send = SendtoFriend()
 	encoder_form = request.form['encoder_message']
-	return render_template('encoded_message.html', title=title, desc=desc, page_title=page_title, author=author, encoder_form=encoder_form, encode=MCode.encode, year=year)
+	return render_template('encoded_message.html', title=title, desc=desc, page_title=page_title, author=author, encoder_form=encoder_form, encode=MCode.encode, year=year, send=send)
 
 @app.route('/decoded_message', methods=['GET','POST'])
 def decoded_message():
 	page_title = 'Your decoded message'
 	decoder_form = request.form['decoder_message']
 	return render_template('decoded_message.html', title=title, desc=desc, page_title=page_title, author=author, decoder_form=decoder_form, decode=MCode.decode, year=year)
+
+@app.route('/sent', methods=['GET','POST'])
+def sent_message():
+	page_title = 'Your sent message'
+	encoder_form = request.form['encoder_message']
+	friend = request.form['friend']
+	you = request.form['you']
+	return render_template('encoded_message.html', title=title, desc=desc, page_title=page_title, author=author, encoder_form=encoder_form, encode=MCode.encode, year=year, send=send)
 
 
 if __name__ == '__main__':

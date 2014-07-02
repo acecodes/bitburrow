@@ -77,9 +77,23 @@
 
       </div>
 
-    <a class="btn btn-lg btn-primary" href="{{ url_for('front_page') }}" role="button">Start over</a>
-    <a class="btn btn-lg btn-success" href="//en.wikipedia.org/wiki/Morse_code#Letters.2C_numbers.2C_punctuation.2C_prosigns_and_non-English_variants" role="button" target="_blank">Morse code reference</a>
-    <br /><br />
+<h3 class="results-header">Send code to a friend</h3>
+
+      <div id="send" class="jumbotron">
+
+
+        <form method="POST" action="{{ url_for('encoded_message') }}">
+        {{ send.hidden_tag() }}
+        <h4>Your name</h4>
+        {{ send.you(size=40) }}
+        <br /><br />
+        <h4>Friend's e-mail address</h4>
+        {{ send.friend(size=40) }}
+        <br /><br />
+        <input type="submit" value="Send" a class="btn btn-lg btn-primary" role="button"></a>
+        </form>
+
+      </div>
 
     {% else %}
           <div id="error" class="jumbotron">
@@ -91,12 +105,12 @@
         </h3>
       
       </div>
-
-      <a class="btn btn-lg btn-primary" href="{{ url_for('front_page') }}" role="button">Start over</a>
-    <a class="btn btn-lg btn-success" href="//en.wikipedia.org/wiki/Morse_code#Letters.2C_numbers.2C_punctuation.2C_prosigns_and_non-English_variants" role="button" target="_blank">Morse code reference</a>
-    <br /><br />
     
     {% endif %}
+
+        <a class="btn btn-lg btn-primary" href="{{ url_for('front_page') }}" role="button">Start over</a>
+    <a class="btn btn-lg btn-success" href="//en.wikipedia.org/wiki/Morse_code#Letters.2C_numbers.2C_punctuation.2C_prosigns_and_non-English_variants" role="button" target="_blank">Morse code reference</a>
+    <br /><br />
 
    <div class="footer">
         <p>&copy; <a href="//www.acecodes.net">Ace Eddleman</a> {{ year }}</p>

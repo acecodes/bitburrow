@@ -37,7 +37,7 @@
 
 
 
-  <body>
+   <body>
 
     <div class="container">
       <div class="header">
@@ -48,36 +48,54 @@
         </ul>
         <h3 class="logo">{{ title }}</h3>
       </div>
-        
-      <div class="jumbotron" id="original">
-        <h3>Translate English into Morse code</h3>  
-        <br />
-        <div id="encoderform">
-        <form method="POST" action="{{ url_for('encoded_message') }}">
-        {{ encoderform.hidden_tag() }}
-        {{ encoderform.encoder_message(size=40) }}
-        <br /><br />
-        <input type="submit" value="Encode" a class="btn btn-lg btn-primary" role="button"></a>
-        </form>
-        </div>
-        </div>
 
-<div class="jumbotron" id="encoded">
-        <h3>Translate Morse code into English</h3> 
-        <br />  
-        <div id="decoderform">
-        <form method="POST" action="{{ url_for('decoded_message') }}">
-        {{ decoderform.hidden_tag() }}
-        {{ decoderform.decoder_message(size=40) }}
-        <br /><br />
-         <input type="submit" value="Decode" a class="btn btn-lg btn-danger" role="button"></a>
-        </form>
-        </div>
+      {% if encode(encoder_form) != False %}
+
+      <h3 class="results-header">Morse code</h3>
+
+      <div id="encoded" class="jumbotron">
+
+        <h3 class="results">
+
+        {{ encode(encoder_form) }} <br /><br />
+        <p class="small">{{ encoder_form }}</p>
+
+        </h3>
+      
+      </div>
+
+
+      <h3 class="results-header">Recipient</h3>
+
+      <div id="original" class="jumbotron">
+
+
+      <h3 class="results">
+
+      
+
+      </h3>
 
       </div>
-  
 
-      <div class="footer">
+    {% else %}
+          <div id="error" class="jumbotron">
+
+        <h3 class="results">
+
+        <div id="error">Please enter a valid string.</div>
+
+        </h3>
+      
+      </div>
+    
+    {% endif %}
+
+    <a class="btn btn-lg btn-primary" href="{{ url_for('front_page') }}" role="button">Start over</a>
+    <a class="btn btn-lg btn-success" href="//en.wikipedia.org/wiki/Morse_code#Letters.2C_numbers.2C_punctuation.2C_prosigns_and_non-English_variants" role="button" target="_blank">Morse code reference</a>
+    <br /><br />
+
+   <div class="footer">
         <p>&copy; <a href="//www.acecodes.net">Ace Eddleman</a> {{ year }}</p>
       </div>
 

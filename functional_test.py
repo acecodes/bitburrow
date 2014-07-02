@@ -5,7 +5,7 @@ from time import sleep
 import unittest
 
 test_english = 'Hello world!'
-test_morse = ".... . .-.. .-.. --- .-- --- .-. .-.. -.. -.-.--"
+test_morse = ".... . .-.. .-.. --- .--.-. .-- --- .-. .-.. -.. -.-.--"
 
 local_test = True
 
@@ -28,7 +28,7 @@ class BitBurrowTester(unittest.TestCase):
 		encoder_input.send_keys(test_english)
 		encoder_input.send_keys(Keys.RETURN)
 		sleep(5)
-
+	# Run a test of the decoding function
 	def test_decoder(self):
 		decoder_input = self.browser.find_element_by_name('decoder_message')
 		decoder_input.send_keys(test_morse)
