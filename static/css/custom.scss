@@ -1,0 +1,27 @@
+/* Custom CSS, generated in part by SASS */
+
+$lobster: 'Lobster', cursive;
+$droid: 'Droid Serif', serif;
+$wh: #FFFFFF;
+$bl: #000000;
+
+.container .jumbotron {border-radius:0;}
+.jumbotron#original { background:#53B2F1; font-family: $droid; color:$wh;}
+.jumbotron#encoded { background:#A30202; font-family: $droid; color:$wh;}
+.jumbotron#error { background:$bl; font-family: $droid; color:$wh;}
+.results-header {font-family: $lobster; color:$bl; text-align:center;}
+
+h3.logo {font-family:$lobster; color:$bl; font-size:3em;}
+.btn {font-family: $droid;}
+h3 {font-size:2.0em;}
+input#encoder_message {color:$bl; font-family: $droid; max-width:90%;}
+input#decoder_message {color:$bl; font-family: $droid; max-width:90%;}
+
+ul {font-family: $droid;; color:$bl;}
+
+a:hover {color:#000203}
+a {color:$bl;}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {background:$bl;}
+
+.footer {font-family: $droid;}

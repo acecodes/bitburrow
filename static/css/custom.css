@@ -1,22 +1,60 @@
-/* Custom CSS */
+/* Custom CSS, generated in part by SASS */
+.container .jumbotron {
+  border-radius: 0; }
 
-.container .jumbotron {border-radius:0;}
-.jumbotron#original { background:#53B2F1; font-family: 'Droid Serif', serif; color:#FFFFFF;}
-.jumbotron#encoded { background:#A30202; font-family: 'Droid Serif', serif; color:#FFFFFF;}
-.jumbotron#error { background:#000000; font-family: 'Droid Serif', serif; color:#FFFFFF;}
-.results-header {font-family: 'Lobster', cursive; color:#000000; text-align:center;}
+.jumbotron#original {
+  background: #53B2F1;
+  font-family: "Droid Serif", serif;
+  color: white; }
 
-h3.logo {font-family: 'Lobster', cursive; color:#000000; font-size:3em;}
-.btn {font-family: 'Droid Serif', serif;}
-h3 {font-size:2.0em;}
-input#encoder_message {color:#000000; font-family: 'Droid Serif', serif; max-width:90%;}
-input#decoder_message {color:#000000; font-family: 'Droid Serif', serif; max-width:90%;}
+.jumbotron#encoded {
+  background: #A30202;
+  font-family: "Droid Serif", serif;
+  color: white; }
 
-ul {font-family: 'Droid Serif', serif;; color:#000000;}
+.jumbotron#error {
+  background: black;
+  font-family: "Droid Serif", serif;
+  color: white; }
 
-a:hover {color:#000203}
-a {color:#000000;}
+.results-header {
+  font-family: "Lobster", cursive;
+  color: black;
+  text-align: center; }
 
-.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {background:#000000;}
+h3.logo {
+  font-family: "Lobster", cursive;
+  color: black;
+  font-size: 3em; }
 
-.footer {font-family: 'Droid Serif', serif;}
+.btn {
+  font-family: "Droid Serif", serif; }
+
+h3 {
+  font-size: 2.0em; }
+
+input#encoder_message {
+  color: black;
+  font-family: "Droid Serif", serif;
+  max-width: 90%; }
+
+input#decoder_message {
+  color: black;
+  font-family: "Droid Serif", serif;
+  max-width: 90%; }
+
+ul {
+  font-family: "Droid Serif", serif;
+  color: black; }
+
+a:hover {
+  color: #000203; }
+
+a {
+  color: black; }
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  background: black; }
+
+.footer {
+  font-family: "Droid Serif", serif; }
