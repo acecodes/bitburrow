@@ -138,12 +138,7 @@ def page_basics():
 @app.route('/')
 def front_page(methods=['POST', 'GET']):
 	encoderform = EncoderForm()
-	if encoderform.validate_on_submit():
-		print(encoderform.errors)
-		return redirect(url_for('encoded_message'))
 	decoderform = DecoderForm()
-	if decoderform.validate_on_submit():
-		return redirect(url_for('decoded_message'))
 	return render_template('index.html', encoderform=encoderform, decoderform=decoderform)
 
 @app.route('/encoded_message', methods=['POST', 'GET'])
@@ -166,7 +161,7 @@ def sent_message():
 	you = request.form['you']
 	msg = Message('Your Friend {you} Sent You A Coded Message!'.format(you=you), page_title=page_title, sender='donotreply@bitburrow.com', recipients=friend)
 
-	return render_template('sent.html', friend=friend)
+	return render_template('sent.html', page_title=page_title, friend=friend)
 
 if __name__ == '__main__':
 	app.run(debug=True)
