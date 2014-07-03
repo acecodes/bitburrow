@@ -53,7 +53,7 @@
         <h3>Translate English into Morse code</h3>  
         <br />
         <div id="encoderform">
-        <form method="POST" action="{{ url_for('encoded_message') }}">
+        <form method="POST" action="">
         {{ encoderform.hidden_tag() }}
         {{ encoderform.encoder_message(size=40) }}
         <br /><br />
@@ -66,7 +66,7 @@
         <h3>Translate Morse code into English</h3> 
         <br />  
         <div id="decoderform">
-        <form method="POST" action="{{ url_for('decoded_message') }}">
+        <form method="POST" action="">
         {{ decoderform.hidden_tag() }}
         {{ decoderform.decoder_message(size=40) }}
         <br /><br />

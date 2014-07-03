@@ -131,38 +131,42 @@ MCode = Morse('Morse Code')
 End Morse Code
 """
 
-@app.route('/')
-def front_page():
-	encoderform = EncoderForm()
-	decoderform = DecoderForm()
-	print(encoderform.errors)
-	print(decoderform.errors)
-	return render_template('index.html', title=title, desc=desc, author=author, encoderform=encoderform, decoderform=decoderform, year=year)
+@app.context_processor
+def page_basics():
+	return {'title':title, 'desc':desc, 'year':year, 'author':author}
 
-@app.route('/encoded_message', methods=['POST'])
+@app.route('/')
+def front_page(methods=['POST', 'GET']):
+	encoderform = EncoderForm()
+	if encoderform.validate_on_submit():
+		print(encoderform.errors)
+		return redirect(url_for('encoded_message'))
+	decoderform = DecoderForm()
+	if decoderform.validate_on_submit():
+		return redirect(url_for('decoded_message'))
+	return render_template('index.html', encoderform=encoderform, decoderform=decoderform)
+
+@app.route('/encoded_message', methods=['POST', 'GET'])
 def encoded_message():
 	page_title = 'Your encoded message'
 	send = SendtoFriend()
 	encoder_form = request.form['encoder_message']
-	print(send.errors)
-	if send.validate_on_submit():
-		return redirect(url_for('sent_message'))
-	return render_template('encoded_message.html', title=title, desc=desc, page_title=page_title, author=author, encoder_form=encoder_form, encode=MCode.encode, year=year, send=send)
+	return render_template('encoded_message.html', page_title=page_title, encoder_form=encoder_form, encode=MCode.encode, send=send)
 
-@app.route('/decoded_message', methods=['POST'])
+@app.route('/decoded_message', methods=['POST', 'GET'])
 def decoded_message():
 	page_title = 'Your decoded message'
 	decoder_form = request.form['decoder_message']
-	return render_template('decoded_message.html', title=title, desc=desc, page_title=page_title, author=author, decoder_form=decoder_form, decode=MCode.decode, year=year)
+	return render_template('decoded_message.html', page_title=page_title, decoder_form=decoder_form, decode=MCode.decode)
 
-@app.route('/sent', methods=['POST'])
+@app.route('/sent', methods=['POST', 'GET'])
 def sent_message():
 	page_title = 'Your sent message'
 	friend = request.form['friend']
 	you = request.form['you']
-	msg = Message('Your Friend {you} Sent You A Coded Message!'.format(you=you), sender='donotreply@bitburrow.com', recipients=friend)
+	msg = Message('Your Friend {you} Sent You A Coded Message!'.format(you=you), page_title=page_title, sender='donotreply@bitburrow.com', recipients=friend)
 
-	return render_template('sent.html', title=title, desc=desc, page_title=page_title, author=author, year=year, friend=friend)
+	return render_template('sent.html', friend=friend)
 
 if __name__ == '__main__':
 	app.run(debug=True)

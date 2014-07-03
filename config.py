@@ -1,7 +1,7 @@
 import os
 
 if os.path.exists('localtesting.py') == True:
-	SECRET_KEY = "tK7tX64BINg5r178&i**"
+	SECRET_KEY = "NotARealKey!"
 
 else:
 	os.environ['SECRET_KEY']
