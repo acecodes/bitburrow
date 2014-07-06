@@ -4,7 +4,7 @@
   color: white; }
 
 .jumbotron {
-  font-family: "Droid Serif", serif; }
+  font-family: 'Lato', sans-serif; }
 
 .jumbotron input {
   color: black; }
@@ -30,23 +30,22 @@
   font-size: 2em; }
 
 .results-header {
-  font-family: "Lobster", cursive;
-  color: black;
+  font-family: 'Lobster', cursive;
   text-align: center; }
 
 h3.logo {
-  font-family: "Lobster", cursive;
+  font-family: 'Lobster', cursive;
   color: black;
   font-size: 3em; }
 
 .btn {
-  font-family: "Droid Serif", serif; }
+  font-family: 'Lato', sans-serif; }
 
 h3 {
   font-size: 2.0em; }
 
 ul {
-  font-family: "Droid Serif", serif;
+  font-family: 'Lato', sans-serif;
   color: black; }
 
 a:hover {
@@ -64,4 +63,4 @@ p.small {
   background: black; }
 
 .footer {
-  font-family: "Droid Serif", serif; }
+  font-family: 'Lato', sans-serif; }

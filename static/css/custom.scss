@@ -1,12 +1,12 @@
 /* Custom CSS, generated in part by SASS */
-
-$lobster: 'Lobster', cursive;
-$droid: 'Droid Serif', serif;
 $wh: #FFFFFF;
 $bl: #000000;
 
+@mixin serif {font-family: 'Lobster', cursive;}
+@mixin sans-serif {font-family:'Lato', sans-serif;}
+
 .container .jumbotron {border-radius:0; color:$wh;}
-.jumbotron {font-family:$droid;}
+.jumbotron {@include sans-serif;}
 .jumbotron input {color:$bl;}
 .jumbotron input.btn {color:$wh;}
 .jumbotron#original { background:#53B2F1;}
@@ -14,19 +14,20 @@ $bl: #000000;
 .jumbotron#error { background:$bl;}
 .jumbotron#send {background:#66AC5C;}
 .jumbotron#blank {background:none; color:$bl; font-size:2em;}
-.results-header {font-family: $lobster; color:$bl; text-align:center;}
+.results-header {@include serif; text-align:center;}
 
-h3.logo {font-family:$lobster; color:$bl; font-size:3em;}
-.btn {font-family: $droid;}
+h3.logo {@include serif; color:$bl; font-size:3em;}
+.btn {@include sans-serif;}
+
 h3 {font-size:2.0em;}
 
-ul {font-family: $droid;; color:$bl;}
+ul {@include sans-serif; color:$bl;}
 
 a:hover {color:#000203}
 a {color:$bl;}
 
 p.small {font-size:0.8em; color:$wh; font-style:italic;}
 
-.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {background:$bl;}
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {background:black;}
 
-.footer {font-family: $droid;}
+.footer {@include sans-serif;}
