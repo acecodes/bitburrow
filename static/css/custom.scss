@@ -5,7 +5,7 @@ $bl: #000000;
 @mixin serif {font-family: 'Lobster', cursive;}
 @mixin sans-serif {font-family:'Lato', sans-serif;}
 
-.container .jumbotron {border-radius:0; color:$wh;}
+.container .jumbotron {border-radius:5px; color:$wh;}
 .jumbotron {@include sans-serif;}
 .jumbotron input {color:$bl;}
 .jumbotron input.btn {color:$wh;}
