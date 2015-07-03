@@ -9,7 +9,7 @@ test_morse = ".... . .-.. .-.. --- .--.-. .-- --- .-. .-.. -.. -.-.--"
 
 local_test = True
 
-if local_test == True:
+if local_test is True:
     url = 'http://localhost:5000'
 else:
     url = 'http://www.bitburrow.com'
