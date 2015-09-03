@@ -8,7 +8,9 @@ app = Flask(__name__)
 api = Api(app)
 
 title = 'BitBurrow'
-desc = 'A web app for encoding and decoding messages using various code systems'
+desc = '''
+A web app for encoding and decoding messages using various code systems
+'''
 author = 'Ace Eddleman'
 year = time.strftime("%Y")
 
@@ -17,6 +19,7 @@ app.config.from_object('config')
 
 
 class Encode(Resource):
+
     def post(self):
         response = request.get_json()
         morse = MorseCode()
@@ -25,7 +28,9 @@ class Encode(Resource):
             return {'message': encoded}
         return {'error': 'This did not work.'}
 
+
 class Decode(Resource):
+
     def post(self):
         response = request.get_json()
         morse = MorseCode()
@@ -35,6 +40,7 @@ class Decode(Resource):
         return {'error': 'This did not work.'}
 
 api.add_resource(Encode, '/encode')
+api.add_resource(Decode, '/decode')
 
 
 if __name__ == '__main__':
