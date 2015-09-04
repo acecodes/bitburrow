@@ -3,7 +3,6 @@ from flask_restful import Resource, Api
 from acemorse import MorseCode
 import time
 
-
 app = Flask(__name__)
 api = Api(app)
 
