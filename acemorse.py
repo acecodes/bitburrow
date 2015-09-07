@@ -50,37 +50,42 @@ class MorseCode:
         # Punctuation Morse code
         self.punc_codes = [code for code in self.punctuation.values()]
 
-    def generate(self, text):
+    @staticmethod
+    def generate(text):
         """
         Generates Morse code from a message in English
         """
-        text = text.lower()  # Make everything lower case, as case doesn't matter in Morse
+        morse_code = MorseCode()
+        # Make everything lower case, as case doesn't matter in Morse
+        text = text.lower()
         morse = []  # Create the list that will eventually hold the Morse code
         for letter in text:  # Search the message for its match in Morse
-            if letter in self.alphabet:
-                morse.append(self.alphabet[letter])
+            if letter in morse_code.alphabet:
+                morse.append(morse_code.alphabet[letter])
             # Attach punctuation or spaces as needed (periods are left out because .
             # is 'e' in Morse)
             if letter == '':
                 morse.append('')
-            if letter in self.punctuation:
-                morse.append(self.punctuation[letter])
+            if letter in morse_code.punctuation:
+                morse.append(morse_code.punctuation[letter])
         return ' '.join(morse)
 
-    def translate(self, morse):
+    @staticmethod
+    def translate(morse):
         """
         Translates a Morse message into English
         """
+        morse_code = MorseCode()
         morse = morse.split(' ')
         english = []
         for code in morse:
-            if code in self.code_list:
-                x = self.code_list.index(code)
-                english.append(self.alpha_list[x])
+            if code in morse_code.code_list:
+                x = morse_code.code_list.index(code)
+                english.append(morse_code.alpha_list[x])
             # Attach punctuation or spaces as needed
             if code == '':
                 english.append(' ')
-            if code in self.punc_codes:
-                index = self.punc_codes.index(code)
-                english.append(self.punc_eng[index])
+            if code in morse_code.punc_codes:
+                index = morse_code.punc_codes.index(code)
+                english.append(morse_code.punc_eng[index])
         return ''.join(english)
