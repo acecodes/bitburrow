@@ -15,7 +15,7 @@ class Encode(Resource):
         encoded = MorseCode.generate(response.get('message', None))
         if encoded:
             return {'message': encoded}
-        return {'error': 'This did not work.'}
+        return {'error': 'An error occurred while encoding your message.'}
 
 
 class Decode(Resource):
@@ -25,7 +25,7 @@ class Decode(Resource):
         decoded = MorseCode.translate(response.get('message', None))
         if decoded:
             return {'message': decoded}
-        return {'error': 'This did not work.'}
+        return {'error': 'An error occurred while decoding your message.'}
 
 api.add_resource(Encode, '/encode')
 api.add_resource(Decode, '/decode')
